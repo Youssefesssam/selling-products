@@ -57,7 +57,7 @@ class ProductItem extends StatelessWidget {
               alignment: Alignment.bottomRight,
               children: [
                 Container(
-                  height: 130,
+                  height: 140,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       bottomRight: Radius.circular(18),
