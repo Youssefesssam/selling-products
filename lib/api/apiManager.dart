@@ -1,8 +1,7 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-import 'package:selling_products_task/api/apiConstants.dart';
-import 'package:selling_products_task/model/SourceRsesponceProduct.dart';
+import '../model/SourceRsesponceProduct.dart';
+import 'apiConstants.dart';
 
 class ApiManager {
   static  Future<SourceResponseProduct?> getSources()async {

@@ -1,19 +1,21 @@
 
 import 'package:flutter/material.dart';
-import 'package:selling_products_task/model/SourceRsesponceProduct.dart';
-import 'package:selling_products_task/utilities/appAssets.dart';
-import 'package:selling_products_task/utilities/appTheme.dart';
 
-class ProuductItem extends StatelessWidget {
+
+import '../model/SourceRsesponceProduct.dart';
+import '../utilities/appAssets.dart';
+import '../utilities/appTheme.dart';
+
+class ProductItem extends StatelessWidget {
   static const String routeName = "prouductItem";
   final ProductsItem product;
-  final int index;
-  ProuductItem({super.key, required this.product, required this.index});
+  final String image;
+  ProductItem({super.key, required this.product, required this.image});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height*.30,
+      height: MediaQuery.of(context).size.height*.34,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
@@ -23,8 +25,7 @@ class ProuductItem extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(2),
       margin: const EdgeInsets.only(left: 10,right: 10),
-      child:
-      Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
@@ -35,8 +36,7 @@ class ProuductItem extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Center(child: Image.network(
-                        product.images.isNotEmpty ? product.images[0] : "")
+                    child: Center(child: Image.network(image)
 
                     )
                 ),
@@ -57,31 +57,34 @@ class ProuductItem extends StatelessWidget {
               alignment: Alignment.bottomRight,
               children: [
                 Container(
-                  height: 100,
+                  height: 130,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       bottomRight: Radius.circular(18),
                       bottomLeft: Radius.circular(18),
                     ),
-                    color: Colors.white
                   ),
-                  margin: const EdgeInsets.all(4),
+                  margin: const EdgeInsets.all(7),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(product.brand,style: AppTitle.titleStyleLarge,),
-                      Text(product.category,style: AppTitle.titleStyleLarge),
+                      Text(product.title,style: AppTitle.titleStyleLarge,overflow: TextOverflow.visible,maxLines: 2),
+                      SizedBox(height: 7,),
+                      Text(product.description,style: AppTitle.titleStyleMedum,overflow: TextOverflow.ellipsis),
 
-                      const SizedBox(height: 7,),
+                      const SizedBox(height: 10,),
 
                       Row(
                         children: [
-                          Text("${product.sku}",style: AppTitle.titleStyleMedum),
+                          Text("EGP ${product.price}",style: AppTitle.titleStyleMedum,overflow: TextOverflow.ellipsis),
                           const SizedBox(width: 10,),
-                          Text("${product.rating}",style: AppTitle.titleStyleMedum),
+                          Text("${product.discountPercentage}",
+                              style: AppTitle.titleStyleMedum.copyWith(
+                                  fontSize: 13,color: Colors.blue,
+                                  decoration: TextDecoration.lineThrough)),
                         ],
                       ),
-                      const SizedBox(height: 7,),
+                      Spacer(),
 
                       Row(
                         children: [
